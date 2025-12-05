@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11222.15 d18.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "foa_bewertung", "foa_bewertung.csproj", "{A83732CF-740A-4940-9B11-841BD89308B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FriendsOfAwardLib", "..\FriendsOfAwardLib\FriendsOfAwardLib.csproj", "{66EAC841-102A-4AFC-ABAB-EF24735BB79C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A83732CF-740A-4940-9B11-841BD89308B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A83732CF-740A-4940-9B11-841BD89308B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A83732CF-740A-4940-9B11-841BD89308B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66EAC841-102A-4AFC-ABAB-EF24735BB79C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66EAC841-102A-4AFC-ABAB-EF24735BB79C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66EAC841-102A-4AFC-ABAB-EF24735BB79C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66EAC841-102A-4AFC-ABAB-EF24735BB79C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
