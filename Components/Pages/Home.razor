@@ -5,6 +5,16 @@
 @inject MyCustomAuthStateProvider? MyAuthStateProvider
 @inject NavigationManager MyNavMgr
 
+<button class="admin" @onclick="GoToAdminLogin">
+    Admin Login
+</button>
+
+@code {
+    private void GoToAdminLogin()
+    {
+        MyNavMgr.NavigateTo("/AdminLogin");
+    }
+}
 
 <head>
     <meta charset="UTF-8">

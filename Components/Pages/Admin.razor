@@ -1,7 +1,7 @@
 ﻿@page "/Admin"
 @rendermode InteractiveServer
 @inject MyCustomAuthStateProvider MyAuthProvider
-@inject NavigationManager Nav
+@inject NavigationManager MyNavMgr
 
 <h3>Adminbereich</h3>
 
@@ -37,7 +37,6 @@ else
 
     private async Task Logout()
     {
-        await MyAuthProvider.Logout();
-        Nav.NavigateTo("/AdminLogin", true);
+        MyNavMgr.NavigateTo("/AdminLogin", true);
     }
 }
