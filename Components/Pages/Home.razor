@@ -9,11 +9,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Friends of Award</title>
-    <link rel="stylesheet" href="app.css">
 
-    <!-- Für Stern-Symbole (FontAwesome) -->
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <!-- NEUER FUNKTIONIERENDER FONT AWESOME IMPORT -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <title>Friends of Award</title>
 </head>
 
 <body>
@@ -22,134 +22,38 @@
     <p class="subtitle">Geben Sie uns Ihre persönlichen Favoriten bekannt!</p>
 
     <p class="instructions">
-        Einfacher Klick = Favorit (max. 5)<br>
-        Doppelklick = Topfavorit (max. 1)
+        Einfacher Klick = Favorit ⭐ (max. 5)<br>
+        Doppelklick = Superfavorit ⭐⭐ (max. 1)
     </p>
 
     <p class="instructions" style="font-size: 14px;">
         Diese Abstimmung ist anonym und auf ein Gerät beschränkt.
     </p>
 
-    <!-- GRID MIT ZAHLENBUTTONS -->
+
+    <!-- GRID -->
     <div class="vote-grid">
 
-        <!-- Buttons 1 - 20 -->
-        <!-- Beispiel: Man könnte hier per JS dynamisch generieren -->
-        <!-- Für die Demo sind sie einzeln geschrieben -->
-
-        <button class="vote-button" data-num="1">
-            1
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="2">
-            2
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="3">
-            3
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="4">
-            4
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="5">
-            5
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="6">
-            6
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="7">
-            7
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="8">
-            8
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="9">
-            9
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="10">
-            10
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="11">
-            11
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="12">
-            12
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="13">
-            13
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="14">
-            14
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="15">
-            15
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="16">
-            16
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="17">
-            17
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="18">
-            18
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="19">
-            19
-            <div class="star-container"></div>
-        </button>
-
-        <button class="vote-button" data-num="20">
-            20
-            <div class="star-container"></div>
-        </button>
+        @* Buttons 1–20 *@
+        @for (int i = 1; i <= 20; i++)
+        {
+            <button class="vote-button" data-num="@i">
+                @i
+                <div class="star-container"></div>
+            </button>
+        }
 
     </div>
 
-    <!-- ANZEIGE DER ANZAHL -->
     <p class="status-text">
         Offen: <span id="favCount">0</span> Favoriten,
-        <span id="topCount">0</span> Topfavorit
+        <span id="topCount">0</span> Superfavorit
     </p>
 
-    <!-- ABSENDEN BUTTON -->
     <button class="submit-btn">Bewertung absenden</button>
 
 
-    <!-- OPTIONALER JAVASCRIPT-CODE FÜR KLICKLOGIK -->
+    <!-- JAVASCRIPT -->
     <script>
         const buttons = document.querySelectorAll(".vote-button");
         let favCount = 0;
@@ -160,7 +64,6 @@
             let clickTimeout = null;
 
             btn.addEventListener("click", () => {
-                // KURZER TIMER, UM SINGLE-KLICK VON DOUBLE-KLICK ZU UNTERSCHEIDEN
                 if (clickTimeout === null) {
                     clickTimeout = setTimeout(() => {
                         handleSingleClick(btn);
@@ -177,7 +80,6 @@
         });
 
         function handleSingleClick(btn) {
-            // Falls Topfavorit -> nicht anklickbar
             if (btn.classList.contains("topfavorit")) return;
 
             if (btn.classList.contains("favorit")) {
@@ -187,7 +89,8 @@
             } else {
                 if (favCount < 5) {
                     btn.classList.add("favorit");
-                    btn.querySelector(".star-container").innerHTML = "<i class='fas fa-star star-icon'></i>";
+                    btn.querySelector(".star-container").innerHTML =
+                        "<i class='fa-solid fa-star'></i>";
                     favCount++;
                 }
             }
@@ -195,36 +98,33 @@
         }
 
         function handleDoubleClick(btn) {
-            // Topfavorit entfernen
             if (btn.classList.contains("topfavorit")) {
                 btn.classList.remove("topfavorit");
                 btn.querySelector(".star-container").innerHTML = "";
                 topCount = 0;
                 topFavoritButton = null;
-                return updateStatus();
-            }
-
-            // neuen Topfavorit setzen
-            if (topCount === 0) {
-                if (topFavoritButton) {
-                    topFavoritButton.classList.remove("topfavorit");
-                    topFavoritButton.querySelector(".star-container").innerHTML = "";
-                }
-
-                btn.classList.add("topfavorit");
-                btn.querySelector(".star-container").innerHTML =
-                    "<i class='fas fa-star star-icon'></i><i class='fas fa-star star-icon'></i>";
-
-                topFavoritButton = btn;
-                topCount = 1;
-
-                // wenn er vorher Favorit war -> Favorit-Eintrag wieder entfernen
-                if (btn.classList.contains("favorit")) {
-                    btn.classList.remove("favorit");
-                    favCount--;
-                }
                 updateStatus();
+                return;
             }
+
+            if (topFavoritButton) {
+                topFavoritButton.classList.remove("topfavorit");
+                topFavoritButton.querySelector(".star-container").innerHTML = "";
+            }
+
+            btn.classList.add("topfavorit");
+            btn.querySelector(".star-container").innerHTML =
+                "<i class='fa-solid fa-star'></i><i class='fa-solid fa-star'></i>";
+
+            topFavoritButton = btn;
+            topCount = 1;
+
+            if (btn.classList.contains("favorit")) {
+                btn.classList.remove("favorit");
+                favCount--;
+            }
+
+            updateStatus();
         }
 
         function updateStatus() {
@@ -232,6 +132,4 @@
             document.getElementById("topCount").textContent = topCount;
         }
     </script>
-
 </body>
-
