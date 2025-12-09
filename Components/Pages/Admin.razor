@@ -1,5 +1,43 @@
-﻿<h3>Admin</h3>
+﻿@page "/Admin"
+@rendermode InteractiveServer
+@inject MyCustomAuthStateProvider MyAuthProvider
+@inject NavigationManager Nav
+
+<h3>Adminbereich</h3>
+
+@if (!isAuthorized)
+{
+    <p>Du wirst weitergeleitet...</p>
+}
+else
+{
+    <div class="admin-menu">
+
+            QR-Codes erzeugen
+
+
+            Diplomarbeiten importieren (Excel)
+
+            Auswertung exportieren (Excel)
+
+        <button class="admin-btn logout" @onclick="Logout">
+            Logout
+        </button>
+
+    </div>
+}
 
 @code {
+    private bool isAuthorized = false;
 
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    private async Task Logout()
+    {
+        await MyAuthProvider.Logout();
+        Nav.NavigateTo("/AdminLogin", true);
+    }
 }
