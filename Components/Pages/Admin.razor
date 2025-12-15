@@ -1,5 +1,8 @@
 ﻿@page "/Admin"
 @rendermode InteractiveServer
+
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
 @inject MyCustomAuthStateProvider MyAuthProvider
 @inject NavigationManager MyNavMgr
 
@@ -14,19 +17,16 @@ else
     <div class="admin-menu">
         <p>
             QR-Codes erzeugen
-
         </p>
             
         <p>
             Diplomarbeiten importieren (Excel)
         </p>
             
-
         <p>
             Auswertung exportieren (Excel)
         </p>
             
-
         <button class="admin-btn logout" @onclick="Logout">
             Logout
         </button>
