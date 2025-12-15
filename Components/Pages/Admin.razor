@@ -12,13 +12,20 @@
 else
 {
     <div class="admin-menu">
-
+        <p>
             QR-Codes erzeugen
 
-
+        </p>
+            
+        <p>
             Diplomarbeiten importieren (Excel)
+        </p>
+            
 
+        <p>
             Auswertung exportieren (Excel)
+        </p>
+            
 
         <button class="admin-btn logout" @onclick="Logout">
             Logout
@@ -28,7 +35,7 @@ else
 }
 
 @code {
-    private bool isAuthorized = false;
+    private bool isAuthorized = true;
 
     protected override async Task OnInitializedAsync()
     {
