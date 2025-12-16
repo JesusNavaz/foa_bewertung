@@ -8,13 +8,13 @@
 
 <h3>Adminbereich</h3>
 
-@if (!isAuthorized)
+@if (!authorized)
 {
     <p>Du wirst weitergeleitet...</p>
 }
 else
 {
-    <div class="admin-menu">
+    <div class="adminMenu">
         <p>
             QR-Codes erzeugen
         </p>
@@ -27,7 +27,7 @@ else
             Auswertung exportieren (Excel)
         </p>
             
-        <button class="admin-btn logout" @onclick="Logout">
+        <button class="adminLogout" @onclick="Logout">
             Logout
         </button>
 
@@ -35,7 +35,7 @@ else
 }
 
 @code {
-    private bool isAuthorized = true;
+    private bool authorized = true;
 
     protected override async Task OnInitializedAsync()
     {
