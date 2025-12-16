@@ -1,0 +1,49 @@
+﻿@page "/Admin"
+@rendermode InteractiveServer
+
+@using Microsoft.AspNetCore.Components.Authorization
+@inject AuthenticationStateProvider AuthStateProvider
+@inject MyCustomAuthStateProvider MyAuthProvider
+@inject NavigationManager MyNavMgr
+
+<h3>Adminbereich</h3>
+
+@if (!authorized)
+{
+    <p>Du wirst weitergeleitet...</p>
+}
+else
+{
+    <div class="adminMenu">
+        <p>
+            QR-Codes erzeugen
+        </p>
+            
+        <p>
+            Diplomarbeiten importieren (Excel)
+        </p>
+            
+        <p>
+            Auswertung exportieren (Excel)
+        </p>
+            
+        <button class="adminLogout" @onclick="Logout">
+            Logout
+        </button>
+
+    </div>
+}
+
+@code {
+    private bool authorized = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+
+    }
+
+    private async Task Logout()
+    {
+        MyNavMgr.NavigateTo("/AdminLogin", true);
+    }
+}

@@ -5,7 +5,7 @@
 
 <PageTitle>AdminLogin</PageTitle>
 
-<h1>Login</h1>
+<h1>AdminLogin</h1>
 
 <div class="login-container">
 
@@ -40,7 +40,7 @@
         if (IsValidUser(username, password))
         {
             MyAuthProvider.Login(username);
-            // TODO: MyNavMgr.NavigateTo("/"); Admin Page erstellen
+            MyNavMgr.NavigateTo("/Admin"); 
         }
         else
         {
