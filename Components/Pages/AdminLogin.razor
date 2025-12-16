@@ -40,7 +40,8 @@
         if (IsValidUser(username, password))
         {
             MyAuthProvider.Login(username);
-            MyNavMgr.NavigateTo("/Admin"); 
+            await Task.Delay(50);               // AuthState sicher setzen
+            MyNavMgr.NavigateTo("/Admin", true);
         }
         else
         {
@@ -48,9 +49,10 @@
         }
     }
 
+
     private bool IsValidUser(string username, string password)
     {
-        // TODO: echte Validierung mit DB, DB-Erstellen, 
-        return username == "admin" && password == "1234";
+        return AdminAuth.IsValidAdmin(username, password);
     }
+
 }
