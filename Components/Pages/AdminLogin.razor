@@ -37,10 +37,10 @@
 
     private async Task HandleLogin()
     {
-        if (IsValidUser(username, password))
+        if (await IsValidUserAsync(username, password))
         {
             MyAuthProvider.Login(username);
-            await Task.Delay(50);               // AuthState sicher setzen
+            await Task.Delay(50);
             MyNavMgr.NavigateTo("/Admin", true);
         }
         else
@@ -49,10 +49,9 @@
         }
     }
 
-
-    private bool IsValidUser(string username, string password)
+    private async Task<bool> IsValidUserAsync(string username, string password)
     {
-        return AdminAuth.IsValidAdmin(username, password);
+        return await Db.Admins.AnyAsync(a =>
+            a.Email == username && a.Password == password);
     }
-
 }
